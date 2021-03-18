@@ -70,9 +70,7 @@ vertical-align: bottom;
     cursor: pointer;
 
 }
-.profile__edit-btn:hover{
-    opacity: 60%;
-}
+
 
 .profile__about{
 font-weight: 400;
@@ -98,9 +96,7 @@ padding: 0;
   justify-content: center;
   
 }
-.profile__add-btn:hover{
-    opacity: 60%;
-}
+
 .cards{
     max-width: 880px;
     margin: auto;
@@ -147,7 +143,29 @@ align-items: center; */
     margin-left: auto;
     cursor: pointer;
     align-self: center;
+    
 }
-.card__like-btn:hover{
+
+.card__like-btn:active{
+    opacity: 100%;
+    background-image: url(../images/like-active.svg);
+}
+
+.btn-opacity-change{
+    transition: opacity 0.3s linear 0s;
+}
+.btn-opacity-change:hover{
 opacity: 60%;
+}
+.footer{
+    max-width: 880px;
+    margin: auto;
+}
+.footer-text{
+font-weight: 400;
+font-size: 18px;
+line-height: 22px;
+color: #545454;
+margin: 0;
+padding: 66px 0 60px 0;
 }
