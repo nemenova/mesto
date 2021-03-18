@@ -1,1 +1,153 @@
-@import url(../vendor/fonts.css);
+@import url(../vendor/normalize.css);
+@import url(../vendor/fonts/fonts.css);
+
+
+
+
+div {
+    border: 1px solid red;
+}
+
+section{
+    border: 1px solid olive;
+}
+
+.page{
+    background-color: black;
+    color: white;
+         max-width: 100%;
+     font-family: "Inter", "Arial", sans-serif;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     -webkit-text-size-adjust: 100%;
+     -ms-text-size-adjust: 100%;
+     -moz-text-size-adjust: 100%;
+     box-sizing: border-box;
+}
+
+
+.header {
+    max-width: 880px;
+    border-bottom: 1px solid #545454;
+    padding: 45px 0 0 0;
+    min-height: 74px;
+    display: flex;
+    margin: auto;
+
+}
+.profile{
+    max-width: 880px;
+    display: flex;
+    margin: auto;
+padding: 40px 0 50px;
+}
+.profile__text{
+    margin: auto 0 auto 30px ;
+}
+.profile__title{
+    display: flex;
+    align-content: flex-end;
+}
+.profile__name{
+font-weight: 500;
+font-size: 42px;
+line-height: 1.14;
+margin: 0;
+padding: 0;
+vertical-align: bottom;  
+
+}
+
+.profile__edit-btn{
+    background-color: black;
+    background-image: url(../images/edit-pen.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 1px solid white;
+    width: 24px;
+    height: 24px;
+    /* align-self: flex-end; */
+    cursor: pointer;
+
+}
+.profile__edit-btn:hover{
+    opacity: 60%;
+}
+
+.profile__about{
+font-weight: 400;
+font-size: 18px;
+line-height: 100%;
+margin: 0;
+padding: 0;
+}
+.profile__add-btn{
+    background-color: black;
+     font-size: 50px;
+    line-height: 1;
+    font-weight: 300;
+    color: white;
+    border: 2px solid white;
+    width: 150px;
+    height: 50px;
+    /* align-self: flex-end; */
+    cursor: pointer;
+    margin: auto 0 auto auto;
+      display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.profile__add-btn:hover{
+    opacity: 60%;
+}
+.cards{
+    max-width: 880px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 282px 282px 282px;
+    grid-template-rows: 361px 361px;
+    gap: 20px 17px;
+}
+.card{
+    background-color: white;
+    border-radius: 10px;
+}
+
+ .card__content {
+ 
+  display: flex;
+  justify-content: space-between;
+  margin: 25px auto 0;
+  max-width: 240px;
+  
+}
+.card__title{
+     
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+font-weight: 900;
+font-size: 24px;
+line-height: 29px;
+color: black;
+margin: 0;
+padding: 0;
+/* display: flex;
+align-items: center; */
+/* justify-items: space-between; */
+}
+.card__like-btn{
+    background-image: url(../images/like.svg);
+    width: 22px;
+    height: 19px;
+    border: none;
+    background-color: white;
+    display: flex;
+    margin-left: auto;
+    cursor: pointer;
+    align-self: center;
+}
+.card__like-btn:hover{
+opacity: 60%;
+}
