@@ -9,4 +9,6 @@
      -ms-text-size-adjust: 100%;
      -moz-text-size-adjust: 100%;
      box-sizing: border-box;
+     display: flex;
+     flex-direction: column;
 }

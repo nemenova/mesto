@@ -4,12 +4,20 @@
      transform: translateX(-50%);
      top: 20vh;
      background-color: white;
-     min-width: 430px;
-     min-height: 330px;
+     max-width: 430px;
+     max-height: 330px;
      border-radius: 10px;
      box-sizing: border-box;
      padding: 34px 36px 37px 36px;
      display: flex;
      flex-direction: column;
      justify-content: space-between;
+     align-content: center;
 }
+@media screen and (max-width: 768px) {
+     .popup__container {
+        max-width: 282px;
+        max-height: 322px;
+        padding: 25px 22px 25px 22px;
+    }
+ }

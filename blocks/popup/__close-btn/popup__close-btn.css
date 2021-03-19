@@ -13,3 +13,9 @@
  .popup__close-btn:focus{
      outline: none;
 }
+@media screen and (max-width: 768px) {
+     .popup__close-btn {
+         right: -12px;
+         top: -87px;
+    }
+ }
