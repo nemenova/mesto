@@ -1,17 +1,16 @@
-# Проект 4: Место
+# Место
 
-### Обзор
+**Social media about traveling interface.** You can set your profile and make your own cards with voyages descriptions.         
 
-* Figma
-* Картинки
+technologies used: grid, flexbox, adaptive design, jquery        
 
-**Figma**
+new: interactive design         
 
-* [Ссылка на макет в Figma](https://www.figma.com/file/2cn9N9jSkmxD84oJik7xL7/JavaScript.-Sprint-4?node-id=0%3A1)
+Lang: html5, css, js         
 
-**Картинки**
+To open: any browser (written with Chrome 88.0.4324.146 using)       
+                             
 
-Доставать картинки предстоит из Фигмы. Это расхожая практика, поэтому полезно потренироваться.
-Не забудьте [оптимизировать картинки](https://tinypng.com/), чтобы ваш сайт загружался быстрее.
+**View the result: https://nemenova.github.io/mesto/**        
 
-Удачи!
+**Coming soon:** ability to add new cards and edit them. Ability to like content. 

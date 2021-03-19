@@ -1,0 +1,11 @@
+.profile__about{
+     text-overflow: ellipsis;
+     white-space: nowrap;
+     overflow: hidden;
+     max-width: 540px;
+     font-weight: 400;
+     font-size: 18px;
+     line-height: 100%;
+     margin: 0;
+     padding: 0;
+}

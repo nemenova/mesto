@@ -1,0 +1,15 @@
+ .popup__close-btn{
+     color: white;
+     font-size: 80px;
+     font-weight: 300;
+     position: absolute;
+     right: -65px;
+     top: -70px;
+     border: none;
+     background-color: transparent;
+     transform: rotate(45deg);
+     cursor: pointer;
+}
+ .popup__close-btn:focus{
+     outline: none;
+}

@@ -1,0 +1,4 @@
+.cards__list-el{
+    display: flex;
+    align-content: stretch;
+}
