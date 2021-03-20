@@ -1,6 +1,6 @@
 .cards__list{
      display: grid;
-     grid-template-columns: 282px 282px 282px;
+     grid-template-columns: repeat(3, 282px);
      grid-template-rows: 361px 361px;
      gap: 20px 17px;
      list-style-type: none;
@@ -9,7 +9,7 @@
 }
 @media screen and (max-width: 1023px) {
      .cards__list {
-        grid-template-columns: 282px 282px;
+        grid-template-columns: repeat(2, 282px);
         grid-template-rows: repeat(3, 361px);
         gap: 20px 40px;
     }

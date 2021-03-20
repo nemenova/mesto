@@ -12,18 +12,7 @@
      color: black;
      padding-bottom: 13px;
 }
- .form__item::-webkit-input-placeholder {
-     color:black;
-}
- .form__item::-moz-placeholder {
-     color:black;
-}
-/* Firefox 19+ */
- .form__item:-moz-placeholder {
-     color:black;
-}
-/* Firefox 18- */
- .form__item:-ms-input-placeholder {
+ .form__item::placeholder {
      color:black;
 }
  .form__item:focus {

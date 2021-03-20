@@ -7,14 +7,14 @@
      text-align: center;
      border: none;
      width: 358px;
-     height: 50px;
+     min-height: 50px;
      border-radius: 2px;
      cursor: pointer;
 }
 @media screen and (max-width: 768px) {
      .popup__submit-btn {
         width: 238px;
-        height: 46px;
+        min-height: 46px;
         font-size: 14px;
         line-height: 17px;
     }
