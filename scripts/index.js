@@ -9,6 +9,50 @@ let formElement = document.querySelector('.form')
 profileName.textContent = nameInput.getAttribute('value');
 profileJob.textContent = jobInput.getAttribute('value');
 
+const cardTemplate = document.querySelector('#cards').content;
+const cardsList = document.querySelector('.cards');
+
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
+// создадим из массива дел массив элементов
+const cards = initialCards.map(item => {
+    
+    const card = cardTemplate.querySelector('.card').cloneNode(true);
+    const cardImage = card.querySelector('.card__image');
+    const cardTitle = card.querySelector('.card__title');
+    cardImage.src = item.link;
+    cardTitle.textContent = item.name;
+    return card;
+});
+
+// добавим элементы в DOM, «разложив» массив
+cardsList.append(...cards); 
+
+
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;

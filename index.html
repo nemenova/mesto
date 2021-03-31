@@ -25,16 +25,20 @@
             <button type="button" class="profile__add-btn btn-opacity-change"></button>
         </section>
 
-        <section class="cards">
-            <ul class="cards__list">
+        <section class="cards cards__list">
+            <!-- <ul class="cards__list"> -->
+                <template id='cards'>
                 <li class="card">
-                    <img src="./images/karachaevsk.png" alt="развалины" class="card__image">
+                    <img src=" " alt="развалины" class="card__image">
                     <div class="card__content">
                         <h2 class="card__title">Карачаевск</h2>
                         <button type="button" class="card__like-btn btn-opacity-change"></button>
                     </div>
-                </li>
-                <li class="card">
+                    </li>
+
+                </template>
+            <!-- </ul> -->
+                <!-- <li class="card">
                     <img src="./images/elbrus.png" alt="вид на гору" class="card__image">
                     <div class="card__content">
                         <h2 class="card__title">Гора Эльбрус</h2>
@@ -69,7 +73,7 @@
                         <button type="button" class="card__like-btn btn-opacity-change"></button>
                     </div>
                 </li>
-            </ul>
+            </ul> -->
         </section>
     </main>
     <footer class="footer">
@@ -86,6 +90,21 @@
                         class="form__item form__item_el_name">
                     <input name="occupation" placeholder="Род занятий" type="text" value="Исследователь океана"
                         class="form__item form__item_el_about">
+                </fieldset>
+                <button type="submit" class="popup__submit-btn black-btn-style">Сохранить</button>
+            </form>
+        </div>
+    </div>
+    <div class="popup">
+        <div class="popup__container">
+            <button type="button" class="popup__close-btn btn-opacity-change">+</button>
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <form name="place" class="form">
+                <fieldset class="form__input">
+                    <input name="place-name" placeholder="Название" type="text" 
+                        class="form__item form__item_el_place-name">
+                    <input name="place-img" placeholder="Ссылка на картинку" type="text" 
+                        class="form__item form__item_el_place-img">
                 </fieldset>
                 <button type="submit" class="popup__submit-btn black-btn-style">Сохранить</button>
             </form>
