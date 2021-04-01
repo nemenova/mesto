@@ -7,7 +7,7 @@ let nameInput = document.querySelector('.form__item_el_name');
 let jobInput = document.querySelector('.form__item_el_about');
 let profileName = document.querySelector('.profile__name');
 let profileJob = document.querySelector('.profile__about');
-let formElement = document.querySelector('.form')
+let formSubmitter = document.querySelector('.form__profile')
 profileName.textContent = nameInput.getAttribute('value');
 profileJob.textContent = jobInput.getAttribute('value');
 
@@ -51,10 +51,6 @@ const initialCards = [
     }
 ];
 
-function template(){
-    
-}
-
 // создадим из массива дел массив элементов
 const cards = initialCards.map(item => {
     const card = cardTemplate.querySelector('.card').cloneNode(true);
@@ -70,12 +66,34 @@ const cards = initialCards.map(item => {
 cardsList.append(...cards); 
 
 
+
+
+
+
 const addSubmitBtn = document.querySelector('.add-submit-btn');
-console.log(addSubmitBtn);
 
 
-const placeName = document.querySelector('.form__item_el_place-name').value;
-const placeImage = document.querySelector('.form__item_el_place-img').value;
+const placeName = document.querySelector('.form__item_el_place-name');
+const placeImage = document.querySelector('.form__item_el_place-img');
+
+function addPlace(evt){
+    evt.preventDefault();
+    const newPlace = cardTemplate.querySelector('.card').cloneNode(true);
+    const cardImage = newPlace.querySelector('.card__image');
+    const cardTitle = newPlace.querySelector('.card__title');
+    cardTitle.textContent = placeName.value;
+    cardImage.src = placeImage.value;
+    cardsList.prepend(newPlace); 
+console.log('asdfghjkl');
+
+    closePopup(popupArray[1]);
+
+
+}
+
+
+
+addSubmitBtn.addEventListener('click', addPlace); 
 
 
 function openPopup (element){
@@ -105,5 +123,5 @@ function formSubmitHandler(evt) {
 
     closePopup(popupArray[0]);
 };
-formElement.addEventListener('submit', formSubmitHandler); 
+formSubmitter.addEventListener('submit', formSubmitHandler); 
 
