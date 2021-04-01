@@ -102,7 +102,14 @@ likeArray.forEach(function (item) {
 });
     
     
+// выберем кнопку удаления
+const deleteButton = document.querySelector('.card__delete-btn');
 
+// добавим обработчик
+deleteButton.addEventListener('click', function () {
+    const extraCard = deleteButton.closest('.card');
+    extraCard.remove();
+}); 
 
 
 
