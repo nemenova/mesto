@@ -70,30 +70,26 @@ cardsList.append(...cards);
 
 
 
-const addSubmitBtn = document.querySelector('.add-submit-btn');
+const addSubmit = document.querySelector('.form__place');
 
 
 const placeName = document.querySelector('.form__item_el_place-name');
 const placeImage = document.querySelector('.form__item_el_place-img');
 
-function addPlace(evt){
+function addPlace(evt) {
     evt.preventDefault();
     const newPlace = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = newPlace.querySelector('.card__image');
     const cardTitle = newPlace.querySelector('.card__title');
     cardTitle.textContent = placeName.value;
     cardImage.src = placeImage.value;
-    cardsList.prepend(newPlace); 
-console.log('asdfghjkl');
+    cardsList.prepend(newPlace);
 
     closePopup(popupArray[1]);
 
 
 }
-
-
-
-addSubmitBtn.addEventListener('click', addPlace); 
+addSubmit.addEventListener('submit', addPlace); 
 
 
 function openPopup (element){
