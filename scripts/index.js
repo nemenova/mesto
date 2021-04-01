@@ -91,6 +91,27 @@ function addPlace(evt) {
 }
 addSubmit.addEventListener('submit', addPlace); 
 
+const likeBtn = document.querySelectorAll('.card__like-btn');
+const likeArray = Array.from(likeBtn);
+
+likeArray.forEach(function (item) {
+    item.addEventListener('click', function (evt) {
+        evt.target.classList.toggle('card__like-btn_active');
+    });
+    
+});
+    
+    
+
+
+
+
+
+
+
+
+
+
 
 function openPopup (element){
     element.classList.add('popup_opened');
@@ -120,4 +141,3 @@ function formSubmitHandler(evt) {
     closePopup(popupArray[0]);
 };
 formSubmitter.addEventListener('submit', formSubmitHandler); 
-
