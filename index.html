@@ -80,7 +80,7 @@
         <p class="footer__text">&copy; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div id="name" class="popup">
         <div class="popup__container">
             <button type="button" class="popup__close-btn btn-opacity-change">+</button>
             <h2 class="popup__title">Редактировать профиль</h2>
@@ -95,10 +95,10 @@
             </form>
         </div>
     </div>
-    <div class="popup">
+    <div id="place" class="popup">
         <div class="popup__container">
-            <button type="button" class="popup__close-btn btn-opacity-change">+</button>
-            <h2 class="popup__title">Редактировать профиль</h2>
+            <button type="button" id='place-btn' class="popup__close-btn btn-opacity-change">+</button>
+            <h2 class="popup__title">Новое место</h2>
             <form name="place" class="form">
                 <fieldset class="form__input">
                     <input name="place-name" placeholder="Название" type="text" 
@@ -106,7 +106,7 @@
                     <input name="place-img" placeholder="Ссылка на картинку" type="text" 
                         class="form__item form__item_el_place-img">
                 </fieldset>
-                <button type="submit" class="popup__submit-btn black-btn-style">Сохранить</button>
+                <button type="submit" class="popup__submit-btn black-btn-style add-submit-btn">Создать</button>
             </form>
         </div>
     </div>

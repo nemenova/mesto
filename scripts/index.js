@@ -1,6 +1,8 @@
-let popup = document.querySelector('.popup');
+const popup = document.querySelectorAll('.popup');
+const popupArray = Array.from(popup);
 let openPopupBtn = document.querySelector('.profile__edit-btn');
 let closePopupBtn = document.querySelector('.popup__close-btn');
+const closePlacePopupBtn = document.querySelector('#place-btn');
 let nameInput = document.querySelector('.form__item_el_name');
 let jobInput = document.querySelector('.form__item_el_about');
 let profileName = document.querySelector('.profile__name');
@@ -11,6 +13,16 @@ profileJob.textContent = jobInput.getAttribute('value');
 
 const cardTemplate = document.querySelector('#cards').content;
 const cardsList = document.querySelector('.cards');
+
+const addBtn = document.querySelector('.profile__add-btn');
+const placePopup = document.querySelector('#place');
+console.log(placePopup);
+const namePopup = document.querySelector('#name');
+console.log(namePopup);
+
+
+
+
 
 const initialCards = [
     {
@@ -38,12 +50,17 @@ const initialCards = [
         link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
     }
 ];
+
+function template(){
+    
+}
+
 // создадим из массива дел массив элементов
 const cards = initialCards.map(item => {
-    
     const card = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = card.querySelector('.card__image');
     const cardTitle = card.querySelector('.card__title');
+
     cardImage.src = item.link;
     cardTitle.textContent = item.name;
     return card;
@@ -53,26 +70,40 @@ const cards = initialCards.map(item => {
 cardsList.append(...cards); 
 
 
+const addSubmitBtn = document.querySelector('.add-submit-btn');
+console.log(addSubmitBtn);
+
+
+const placeName = document.querySelector('.form__item_el_place-name').value;
+const placeImage = document.querySelector('.form__item_el_place-img').value;
+
+
+function openPopup (element){
+    element.classList.add('popup_opened');
+};
+function closePopup (element){
+    element.classList.remove('popup_opened');
+};
+openPopupBtn.addEventListener('click', function(event) {
+    openPopup(popupArray[0]);
+});
+closePopupBtn.addEventListener('click', function(event) {
+    closePopup(popupArray[0]);
+});
+
+addBtn.addEventListener('click', function (event){
+    openPopup(popupArray[1]);
+    
+});
+closePlacePopupBtn.addEventListener('click', function (event) {
+    closePopup(popupArray[1]);
+});
 function formSubmitHandler(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
- 
-    closePopup();
+
+    closePopup(popupArray[0]);
 };
 formElement.addEventListener('submit', formSubmitHandler); 
-function openPopup (){
-    popup.classList.add('popup_opened');
-};
-function closePopup (){
-    popup.classList.remove('popup_opened');
-};
-openPopupBtn.addEventListener('click', function(event) {
-    openPopup ();
-});
-closePopupBtn.addEventListener('click', function(event){
- closePopup ();
-});
-
-
 
