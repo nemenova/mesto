@@ -115,11 +115,11 @@ closePlacePopupBtn.addEventListener('click', function (event) {
 
 // функция поп-апа с картинкой. передача значений и его закрытие
 function openPhoto(evt) {
-        openPopup(popupArray[2]);
-        popupPhoto.src = evt.target.src;
-        const parent = evt.target.parentNode;
-        const cardTitle = parent.querySelector('.card__title');
-        photoSubtitle.textContent = cardTitle.textContent;
+    openPopup(popupArray[2]);
+    popupPhoto.src = evt.target.src;
+    const parent = evt.target.parentNode;
+    const cardTitle = parent.querySelector('.card__title');
+    photoSubtitle.textContent = cardTitle.textContent;
 };
 
 closePhotoBtn.addEventListener('click', function (evt) {
