@@ -27,8 +27,6 @@ const initialCards = [
 
 const cardTemplate = document.querySelector('.card-template').content;
 const cardsList = document.querySelector('.cards');
-const cardTitle = document.querySelector('.card__title');
-const cardImage = document.querySelectorAll('.card__image');
 
 // функции лайка и удаления карточки
 function likeCard(evt) {
@@ -76,8 +74,8 @@ function addPlace(evt) {
 
 addSubmit.addEventListener('submit', addPlace);
 
-const popup = document.querySelectorAll('.popup');
-const popupArray = Array.from(popup); // делаем массив из нод-листа, чтобы обращаться по индексу к нужному окну
+const popups = document.querySelectorAll('.popup');
+const popupArray = Array.from(popups); // делаем массив из нод-листа, чтобы обращаться по индексу к нужному окну
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
 const openEditPopupBtn = document.querySelector('.profile__edit-btn');
