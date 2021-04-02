@@ -52,7 +52,7 @@ const initialCards = [
     }
 ];
 
-// создадим из массива дел массив элементов
+
 const cards = initialCards.map(item => {
     const card = cardTemplate.querySelector('.card').cloneNode(true);
     const cardImage = card.querySelector('.card__image');
@@ -63,7 +63,7 @@ const cards = initialCards.map(item => {
     return card;
 });
 
-// добавим элементы в DOM, «разложив» массив
+
 cardsList.append(...cards); 
 
 
@@ -103,13 +103,15 @@ likeArray.forEach(function (item) {
 });
     
     
-// выберем кнопку удаления
-const deleteButton = document.querySelector('.card__delete-btn');
 
-// добавим обработчик
-deleteButton.addEventListener('click', function () {
-    const extraCard = deleteButton.closest('.card');
+const deleteButton = document.querySelectorAll('.card__delete-btn');
+
+deleteButton.forEach(function (btn){
+
+btn.addEventListener('click', function () {
+    const extraCard = btn.closest('.card');
     extraCard.remove();
+});
 }); 
 
 
@@ -120,15 +122,10 @@ const popupPhoto = document.querySelector('.popup__image');
 console.log(cardImage);
 console.log(popupPhoto.src);
 
-// function openPhoto(element) {
-//     openPopup(popupArray[2]);
-   
-//     photoSubtitle.textContent = cardTitle.textContent;
 
-//     //  cardImage.forEach(function (card) { // Берём каждый элемент массива
-//     //     popupPhoto.src = card.src;
-     
-// };
+
+
+
 
 
 cardImage.forEach(function (item) {
