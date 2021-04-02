@@ -116,20 +116,28 @@ deleteButton.addEventListener('click', function () {
 const photoSubtitle = document.querySelector('.popup__caption');
 const cardTitle = document.querySelector('.card__title');
 const cardImage = document.querySelectorAll('.card__image');
-const popupPhoto = document.querySelectorAll('.popup__image');
+const popupPhoto = document.querySelector('.popup__image');
+console.log(cardImage);
+console.log(popupPhoto.src);
 
-
-function openPhoto(element) {
-    openPopup(popupArray[2]);
+// function openPhoto(element) {
+//     openPopup(popupArray[2]);
    
-    photoSubtitle.textContent = cardTitle.textContent;
-    popupPhoto.src = cardImage.src;
-console.log(cardImage.src);
+//     photoSubtitle.textContent = cardTitle.textContent;
 
-};
+//     //  cardImage.forEach(function (card) { // Берём каждый элемент массива
+//     //     popupPhoto.src = card.src;
+     
+// };
+
+
 cardImage.forEach(function (item) {
 item.addEventListener('click', function (evt) {
-    openPhoto();
+    openPopup(popupArray[2]);
+    popupPhoto.src = evt.target.src;
+    const parent = evt.target.parentNode;
+    const cardTitle = parent.querySelector('.card__title');
+    photoSubtitle.textContent = cardTitle.textContent;
 });
 });
 
