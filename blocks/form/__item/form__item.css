@@ -12,9 +12,6 @@
      color: black;
      padding-bottom: 13px;
 }
- .form__item::placeholder {
-     color:black;
-}
  .form__item:focus {
      outline-color: #bcbcc4;
 }
