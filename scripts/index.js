@@ -3,6 +3,7 @@ const popupArray = Array.from(popup);
 let openPopupBtn = document.querySelector('.profile__edit-btn');
 let closePopupBtn = document.querySelector('.popup__close-btn');
 const closePlacePopupBtn = document.querySelector('#place-btn');
+const closePhotoBtn = document.querySelector('.close-photo-btn')
 let nameInput = document.querySelector('.form__item_el_name');
 let jobInput = document.querySelector('.form__item_el_about');
 let profileName = document.querySelector('.profile__name');
@@ -112,8 +113,29 @@ deleteButton.addEventListener('click', function () {
 }); 
 
 
+const photoSubtitle = document.querySelector('.popup__caption');
+const cardTitle = document.querySelector('.card__title');
+const cardImage = document.querySelectorAll('.card__image');
+const popupPhoto = document.querySelectorAll('.popup__image');
 
 
+function openPhoto(element) {
+    openPopup(popupArray[2]);
+   
+    photoSubtitle.textContent = cardTitle.textContent;
+    popupPhoto.src = cardImage.src;
+console.log(cardImage.src);
+
+};
+cardImage.forEach(function (item) {
+item.addEventListener('click', function (evt) {
+    openPhoto();
+});
+});
+
+closePhotoBtn.addEventListener('click', function (evt) {
+    closePopup(popupArray[2]);
+});
 
 
 
