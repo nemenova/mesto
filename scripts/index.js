@@ -61,7 +61,7 @@ initialCards.forEach(function (item) {
 });
 
 // функция добавления карточки через форму
-const addSubmit = document.querySelector('.form__place');
+const addSubmit = document.querySelector('.form-place');
 const placeName = document.querySelector('.form__item_el_place-name');
 const placeImage = document.querySelector('.form__item_el_place-img');
 
@@ -129,7 +129,7 @@ const nameInput = document.querySelector('.form__item_el_name');
 const jobInput = document.querySelector('.form__item_el_about');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
-const formSubmitter = document.querySelector('.form__profile')
+const formSubmitter = document.querySelector('.form-profile')
 
 profileName.textContent = nameInput.getAttribute('value');
 profileJob.textContent = jobInput.getAttribute('value');

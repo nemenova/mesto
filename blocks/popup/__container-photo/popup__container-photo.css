@@ -1,7 +1,6 @@
-.photo-popup__container{
+.popup__container-photo {
     position: relative;
     display: flex;
     margin: auto;
     flex-direction: column;
-    background-color: rgba(0, 0, 0, .4);
 }
