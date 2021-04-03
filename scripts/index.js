@@ -61,21 +61,23 @@ initialCards.forEach(function (item) {
 });
 
 // функция добавления карточки через форму
-const addSubmit = document.querySelector('.form-place');
+const addSubmitter = document.querySelector('.form-place');
 const placeName = document.querySelector('.form__item_el_place-name');
 const placeImage = document.querySelector('.form__item_el_place-img');
 
-function addPlace(evt) {
+function handleAddFormSubmit(evt) {
     evt.preventDefault();
     const newPlace = createCard(placeName.value, placeImage.value);
     cardsList.prepend(newPlace);
-    closePopup(popupArray[1]);
+    closePopup(popupAddForm);
 }
 
-addSubmit.addEventListener('submit', addPlace);
+addSubmitter.addEventListener('submit', handleAddFormSubmit);
 
-const popups = document.querySelectorAll('.popup');
-const popupArray = Array.from(popups); // делаем массив из нод-листа, чтобы обращаться по индексу к нужному окну
+const popupEditForm = document.querySelector('.popup-edit');
+const popupAddForm = document.querySelector('.popup-add-card');
+const popupBigPhoto = document.querySelector('.popup-photo')
+// const popupArray = Array.from(popups); // делаем массив из нод-листа, чтобы обращаться по индексу к нужному окну
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
 const openEditPopupBtn = document.querySelector('.profile__edit-btn');
@@ -94,34 +96,34 @@ function closePopup(element) {
 };
 
 // слушатели на кнопки открытия и закрытия поп-апов
-openEditPopupBtn.addEventListener('click', function (event) {
-    openPopup(popupArray[0]);
+openEditPopupBtn.addEventListener('click', function () {
+    openPopup(popupEditForm);
 });
 
-closeEditPopupBtn.addEventListener('click', function (event) {
-    closePopup(popupArray[0]);
+closeEditPopupBtn.addEventListener('click', function () {
+    closePopup(popupEditForm);
 });
 
-addBtn.addEventListener('click', function (event) {
-    openPopup(popupArray[1]);
+addBtn.addEventListener('click', function () {
+    openPopup(popupAddForm);
 
 });
 
-closePlacePopupBtn.addEventListener('click', function (event) {
-    closePopup(popupArray[1]);
+closePlacePopupBtn.addEventListener('click', function () {
+    closePopup(popupAddForm);
 });
 
 // функция поп-апа с картинкой. передача значений и его закрытие
 function openPhoto(evt) {
-    openPopup(popupArray[2]);
+    openPopup(popupBigPhoto);
     popupPhoto.src = evt.target.src;
     const parent = evt.target.parentNode;
     const cardTitle = parent.querySelector('.card__title');
     photoSubtitle.textContent = cardTitle.textContent;
 };
 
-closePhotoBtn.addEventListener('click', function (evt) {
-    closePopup(popupArray[2]);
+closePhotoBtn.addEventListener('click', function () {
+    closePopup(popupBigPhoto);
 });
 
 // редактирование профиля
@@ -134,11 +136,11 @@ const formSubmitter = document.querySelector('.form-profile')
 profileName.textContent = nameInput.getAttribute('value');
 profileJob.textContent = jobInput.getAttribute('value');
 
-function formSubmitHandler(evt) {
+function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    closePopup(popupArray[0]);
+    closePopup(popupEditForm);
 };
 
-formSubmitter.addEventListener('submit', formSubmitHandler); 
+formSubmitter.addEventListener('submit', handleEditFormSubmit); 
