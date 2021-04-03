@@ -77,7 +77,6 @@ addSubmitter.addEventListener('submit', handleAddFormSubmit);
 const popupEditForm = document.querySelector('.popup-edit');
 const popupAddForm = document.querySelector('.popup-add-card');
 const popupBigPhoto = document.querySelector('.popup-photo')
-// const popupArray = Array.from(popups); // делаем массив из нод-листа, чтобы обращаться по индексу к нужному окну
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
 const openEditPopupBtn = document.querySelector('.profile__edit-btn');
