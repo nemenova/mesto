@@ -1,5 +1,8 @@
 .card__like-btn{
      background-image: url(../../../images/like.svg);
+     background-repeat: no-repeat;
+     background-position: center;
+     object-fit: cover;
      width: 22px;
      height: 19px;
      border: none;

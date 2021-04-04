@@ -97,6 +97,8 @@ function closePopup(element) {
 // слушатели на кнопки открытия и закрытия поп-апов
 openEditPopupBtn.addEventListener('click', function () {
     openPopup(popupEditForm);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
 });
 
 closeEditPopupBtn.addEventListener('click', function () {
@@ -131,9 +133,6 @@ const jobInput = document.querySelector('.form__item_el_about');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const formSubmitter = document.querySelector('.form-profile')
-
-profileName.textContent = nameInput.getAttribute('value');
-profileJob.textContent = jobInput.getAttribute('value');
 
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
