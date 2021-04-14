@@ -15,3 +15,6 @@
  .form__item:focus {
      outline-color: #bcbcc4;
 }
+/* .form__item:invalid{
+    border-bottom: 1px solid red;
+} */

@@ -35,3 +35,4 @@
 @import url(../blocks/popup/__caption/popup__caption.css);
 @import url(../blocks/btn-opacity-change/btn-opacity-change.css);
 @import url(../blocks/black-btn-style/black-btn-style.css);
+@import url(../blocks/form/__item/_type/form__item_type_error.css);

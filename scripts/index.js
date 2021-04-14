@@ -142,3 +142,42 @@ function handleEditFormSubmit(evt) {
 };
 
 formSubmitter.addEventListener('submit', handleEditFormSubmit); 
+
+
+
+
+// Вынесем все необходимые элементы формы в константы
+const formElement = document.querySelector('.form');
+const formInput = formElement.querySelector('.form__item');
+
+// Функция, которая добавляет класс с ошибкой
+const showInputError = (element) => {
+    element.classList.add('form__item_type_error');
+};
+
+// Функция, которая удаляет класс с ошибкой
+const hideInputError = (element) => {
+    element.classList.remove('form__item_type_error');
+};
+
+// Функция isValid теперь принимает formElement и inputElement,
+// а не берёт их из внешней области видимости
+
+const isValid = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
+        // showInputError теперь получает параметром форму, в которой
+        // находится проверяемое поле, и само это поле
+        showInputError(formElement, inputElement, inputElement.validationMessage);
+    } else {
+        // hideInputError теперь получает параметром форму, в которой
+        // находится проверяемое поле, и само это поле
+        hideInputError(formElement, inputElement);
+    }
+};
+formElement.addEventListener('submit', function (evt) {
+    // Отменим стандартное поведение по сабмиту
+    evt.preventDefault();
+});
+
+// Вызовем функцию isValid на каждый ввод символа
+formInput.addEventListener('input', isValid);
