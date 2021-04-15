@@ -38,10 +38,4 @@
 @import url(../blocks/form/__item/_type/form__item_type_error.css);
 @import url(../blocks/form/__item-error/form__item-error.css);
 @import url(../blocks/form/__item-error/_active/form__item-error_active.css);
-
-.popup__submit-btn_inactive{
-    background-color: white;
-    color: #ddd;
-    border: 1px solid #ddd;
-    cursor: auto;
-}
+@import url(../blocks/popup/__submit-btn/_inactive/popup__submit-btn_inactive.css);
