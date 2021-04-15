@@ -84,30 +84,33 @@ const closeEditPopupBtn = document.querySelector('.popup__close-btn');
 const closePlacePopupBtn = document.querySelector('.place-btn');
 const closePhotoBtn = document.querySelector('.close-photo-btn');
 const addBtn = document.querySelector('.profile__add-btn');
-// const popupOpened = document.querySelector('.popup_opened')
+
 // функции открытия и закрытия универсальные
 function openPopup(element) {
     element.classList.add('popup_opened');
-    document.addEventListener('keydown', function(evt){
-        if (evt.key === 'Escape') {
-            closePopup(element)
-            // console.log(evt.target.parentNode)
-        };
-    }); 
-    // document.addEventListener('click', closeByOverlay);
+    document.addEventListener('keydown', closeByEsc); 
+    document.addEventListener('click', closeByOverlay);
 };
 
 function closePopup(element) {
     element.classList.remove('popup_opened');
+    document.removeEventListener('click', closeByOverlay);
+    document.removeEventListener('keydown', closeByEsc); 
 };
 
-//  function closeByOverlay(evt){
-//      if (!evt.target.classList.contains('.popup__container')){
-//        closePopup(popupOpened)
-//    }
-    
-//  }
 
+ function closeByOverlay(evt){
+     if (evt.target.classList.contains('popup')){
+         closePopup(evt.target);
+   }
+    
+ }
+function closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'))
+    };
+
+}
 
 
 
@@ -253,7 +256,14 @@ const hasInvalidInput = (inputList) => {
     })
 }; 
 
-
+enableValidationObj({
+    formSelector: '.form',
+    inputSelector: '.popup__item',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_inactive',
+    inputErrorClass: 'form__item_type_error',
+    errorClass: 'form__item-error_active'
+}); 
 
 const enableValidation = () => {
     // Найдём все формы с указанным классом в DOM,
