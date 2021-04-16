@@ -27,6 +27,48 @@ const initialCards = [
 
 const cardTemplate = document.querySelector('.card-template').content;
 const cardsList = document.querySelector('.cards');
+const submitterOfAdd = document.querySelector('.form-place');
+const placeName = document.querySelector('.form__item_el_place-name');
+const placeImage = document.querySelector('.form__item_el_place-img');
+const popupEditForm = document.querySelector('.popup-edit');
+const popupAddForm = document.querySelector('.popup-add-card');
+const popupBigPhoto = document.querySelector('.popup-photo')
+const photoSubtitle = document.querySelector('.popup__caption');
+const popupPhoto = document.querySelector('.popup__image');
+const btnOpenEditPopup = document.querySelector('.profile__edit-btn');
+const btnCloseEditPopup = document.querySelector('.popup__close-btn');
+const btnClosePlacePopup = document.querySelector('.place-btn');
+const btnClosePhoto = document.querySelector('.close-photo-btn');
+const btnAdd = document.querySelector('.profile__add-btn');
+const nameInput = document.querySelector('.form__item_el_name');
+const jobInput = document.querySelector('.form__item_el_about');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__about');
+const submitterOfForm = document.querySelector('.form-profile')
+
+// функции открытия и закрытия универсальные
+function openPopup(element) {
+    element.classList.add('popup_opened');
+    document.addEventListener('keydown', closeByEsc);
+    document.addEventListener('click', closeByOverlay);
+};
+
+function closePopup(element) {
+    element.classList.remove('popup_opened');
+    document.removeEventListener('click', closeByOverlay);
+    document.removeEventListener('keydown', closeByEsc);
+};
+
+function closeByOverlay(evt) {
+    if (evt.target.classList.contains('popup')) {
+        closePopup(evt.target);
+    }
+}
+function closeByEsc(evt) {
+    if (evt.key === 'Escape') {
+        closePopup(document.querySelector('.popup_opened'))
+    };
+}
 
 // функции лайка и удаления карточки
 function likeCard(evt) {
@@ -54,91 +96,16 @@ function createCard(title, link) {
     return card;
 };
 
-// выведение первых 6 карточек на страницу
-initialCards.forEach(function (item) {
-    const cards = createCard(item.name, item.link);
-    cardsList.append(cards);
-});
-
 // функция добавления карточки через форму
-const addSubmitter = document.querySelector('.form-place');
-const placeName = document.querySelector('.form__item_el_place-name');
-const placeImage = document.querySelector('.form__item_el_place-img');
-
 function handleAddFormSubmit(evt) {
     evt.preventDefault();
     const newPlace = createCard(placeName.value, placeImage.value);
     cardsList.prepend(newPlace);
     closePopup(popupAddForm);
+    submitterOfAdd.reset();
 }
 
-addSubmitter.addEventListener('submit', handleAddFormSubmit);
-
-const popupEditForm = document.querySelector('.popup-edit');
-const popupAddForm = document.querySelector('.popup-add-card');
-const popupBigPhoto = document.querySelector('.popup-photo')
-const photoSubtitle = document.querySelector('.popup__caption');
-const popupPhoto = document.querySelector('.popup__image');
-const openEditPopupBtn = document.querySelector('.profile__edit-btn');
-const closeEditPopupBtn = document.querySelector('.popup__close-btn');
-const closePlacePopupBtn = document.querySelector('.place-btn');
-const closePhotoBtn = document.querySelector('.close-photo-btn');
-const addBtn = document.querySelector('.profile__add-btn');
-
-// функции открытия и закрытия универсальные
-function openPopup(element) {
-    element.classList.add('popup_opened');
-    document.addEventListener('keydown', closeByEsc); 
-    document.addEventListener('click', closeByOverlay);
-};
-
-function closePopup(element) {
-    element.classList.remove('popup_opened');
-    document.removeEventListener('click', closeByOverlay);
-    document.removeEventListener('keydown', closeByEsc); 
-};
-
-
- function closeByOverlay(evt){
-     if (evt.target.classList.contains('popup')){
-         closePopup(evt.target);
-   }
-    
- }
-function closeByEsc(evt) {
-    if (evt.key === 'Escape') {
-        closePopup(document.querySelector('.popup_opened'))
-    };
-
-}
-
-
-
-
-
-
-
-// слушатели на кнопки открытия и закрытия поп-апов
-openEditPopupBtn.addEventListener('click', function () {
-    openPopup(popupEditForm);
-    nameInput.value = profileName.textContent;
-    jobInput.value = profileJob.textContent;
-});
-
-closeEditPopupBtn.addEventListener('click', function () {
-    closePopup(popupEditForm);
-});
-
-addBtn.addEventListener('click', function () {
-    openPopup(popupAddForm);
-
-});
-
-closePlacePopupBtn.addEventListener('click', function () {
-    closePopup(popupAddForm);
-});
-
-// функция поп-апа с картинкой. передача значений и его закрытие
+// функция поп-апа с картинкой
 function openPhoto(evt) {
     openPopup(popupBigPhoto);
     popupPhoto.src = evt.target.src;
@@ -146,18 +113,7 @@ function openPhoto(evt) {
     const cardTitle = parent.querySelector('.card__title');
     photoSubtitle.textContent = cardTitle.textContent;
 };
-
-closePhotoBtn.addEventListener('click', function () {
-    closePopup(popupBigPhoto);
-});
-
-// редактирование профиля
-const nameInput = document.querySelector('.form__item_el_name');
-const jobInput = document.querySelector('.form__item_el_about');
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__about');
-const formSubmitter = document.querySelector('.form-profile')
-
+// функция редактирования профиля
 function handleEditFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = nameInput.value;
@@ -165,4 +121,28 @@ function handleEditFormSubmit(evt) {
     closePopup(popupEditForm);
 };
 
-formSubmitter.addEventListener('submit', handleEditFormSubmit); 
+btnOpenEditPopup.addEventListener('click', function () {
+    openPopup(popupEditForm);
+    nameInput.value = profileName.textContent;
+    jobInput.value = profileJob.textContent;
+});
+btnCloseEditPopup.addEventListener('click', function () {
+    closePopup(popupEditForm);
+});
+btnAdd.addEventListener('click', function () {
+    openPopup(popupAddForm);
+});
+btnClosePlacePopup.addEventListener('click', function () {
+    closePopup(popupAddForm);
+});
+btnClosePhoto.addEventListener('click', function () {
+    closePopup(popupBigPhoto);
+});
+submitterOfForm.addEventListener('submit', handleEditFormSubmit);
+submitterOfAdd.addEventListener('submit', handleAddFormSubmit);
+
+// выведение первых 6 карточек на страницу
+initialCards.forEach(function (item) {
+    const cards = createCard(item.name, item.link);
+    cardsList.append(cards);
+});
