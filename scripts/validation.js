@@ -66,8 +66,8 @@ const setEventListeners = (formElement) => {
 };
 
 // Функция запуска проверки
-const enableValidation = () => {
-    const formList = Array.from(document.querySelectorAll(enableValidationObj.formSelector));
+const enableValidation = (objConfig) => {
+    const formList = Array.from(document.querySelectorAll(objConfig.formSelector));
     formList.forEach((formElement) => {
         formElement.addEventListener('submit', (evt) => {
             evt.preventDefault();
@@ -76,4 +76,4 @@ const enableValidation = () => {
     });
 };
 
-enableValidation();
+enableValidation(enableValidationObj);
