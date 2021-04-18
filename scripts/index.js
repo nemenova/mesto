@@ -99,10 +99,12 @@ function createCard(title, link) {
 // функция добавления карточки через форму
 function handleAddFormSubmit(evt) {
     evt.preventDefault();
+    const btnAddition = document.querySelector('.add-submit-btn');
     const newPlace = createCard(placeName.value, placeImage.value);
     cardsList.prepend(newPlace);
     closePopup(popupAddForm);
     submitterOfAdd.reset();
+    toggleButtonState(inputList, btnAddition);
 }
 
 // функция поп-апа с картинкой
