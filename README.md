@@ -2,7 +2,7 @@
 
 **Social media about traveling interface.** You can set your profile and make your own cards with voyages descriptions.         
 
-technologies used: grid, flexbox, adaptive design, jquery        
+technologies used: grid, flexbox, adaptive design.      
 
 new: interactive design, ability to add new cards and edit them. Ability to like content. Also you can view photos in bigger size (like a gallery but isn't).         
 
