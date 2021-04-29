@@ -14,9 +14,11 @@ export default class Card {
     }
     createCard() {
         this._element = this._getTemplate();
-        this._element.querySelector('.card__title').textContent = this._title;
-        this._element.querySelector('.card__image').src = this._image;
-        this._element.querySelector('.card__image').alt = this._title;
+        const cardImage = this._element.querySelector('.card__image');
+        const cardTitle = this._element.querySelector('.card__title');
+        cardTitle.textContent = this._title;
+        cardImage.src = this._image;
+        cardImage.alt = this._title;
         this._setEventListeners();
         
         return this._element;

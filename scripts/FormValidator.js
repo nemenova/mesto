@@ -1,6 +1,3 @@
-// const formElement = document.querySelector(this._enableValidationObj.formSelector);
-// const inputList = Array.from(formElement.querySelectorAll(this._enableValidationObj.inputSelector));
-
 export default class FormValidation {
     constructor(enableValidationObj) {
         this._enableValidationObj = enableValidationObj;
@@ -16,7 +13,7 @@ export default class FormValidation {
             this._setEventListeners(formElement);
         });
     };
-    
+
     // Функция, которая добавляет класс с ошибкой
     _showInputError = (formElement, inputElement, errorMessage) => {
         const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
