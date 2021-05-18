@@ -1,5 +1,7 @@
-import Card from './Card.js';
-import FormValidation from './FormValidator.js'
+import Card from '../components/Card.js';
+import FormValidation from '../components/FormValidator.js';
+import './index.css';
+
 
 const initialCards = [
     {
@@ -140,11 +142,11 @@ submitterOfForm.addEventListener('submit', handleEditFormSubmit);
 submitterOfAdd.addEventListener('submit', handleAddFormSubmit);
 
 // выведение первых 6 карточек на страницу
-initialCards.forEach((item) => {
-    const cards = new Card(item, '.card-template', openPhoto);
-    const cardElement = cards.createCard();
-    document.querySelector('.cards').append(cardElement);
-});
+// initialCards.forEach((item) => {
+//     const cards = new Card(item, '.card-template', openPhoto);
+//     const cardElement = cards.createCard();
+//     document.querySelector('.cards').append(cardElement);
+// });
 
 // валидируем формы из класса валидации
 const form = new FormValidation({
@@ -156,3 +158,18 @@ const form = new FormValidation({
     errorClass: 'form__item-error_active'
 });
 form.enableValidation();
+
+const cardList = new Section({
+    data: initialCards,
+    renderer: () => {
+
+        const cardElement = card.createCard();
+
+        cardList.addItem(cardElement);
+    },
+},
+    cardListSection
+);
+
+
+cardList.renderItems();
