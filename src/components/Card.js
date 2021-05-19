@@ -1,9 +1,9 @@
 export default class Card {
-    constructor(data, cardSelector, action) {
+    constructor(data, cardSelector, handleCardClick) {
         this._image = data.link;
         this._title = data.name;
         this._cardSelector = cardSelector;
-        this._openPhoto = action;
+        this._openPhoto = handleCardClick;
 
     }
     _getTemplate() {
