@@ -105,7 +105,7 @@ function openPhoto(image, title) {
 
 // функция редактирования профиля
 function handleEditFormSubmit(data) {
-    const userInfo = new UserInfo({ userName: profileName.textContent, userInfo: profileJob.textContent})
+    const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob})
     userInfo.setUserInfo(data);
     // evt.preventDefault();
     // profileName.textContent = nameInput.value;
