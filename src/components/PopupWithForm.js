@@ -5,16 +5,12 @@ export default class PopupWithForm extends Popup {
     constructor(popupSelector, submitHandler) {
         super(popupSelector);
         this._submitHandler = submitHandler;
-
     }
-
     _getInputValues() {
         const values = {};
         const inputs = this._form.querySelectorAll('.form__item');
-        console.log('fuck');
         inputs.forEach(input => {
             values.name = input.value;
-            console.log('fuck2');
         });
         return values;
     }
