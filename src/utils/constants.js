@@ -37,5 +37,6 @@ const nameInput = document.querySelector('.form__item_el_name');
 const jobInput = document.querySelector('.form__item_el_about');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
-
-export { initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput,jobInput, profileName, profileJob}
+const photoSubtitle = document.querySelector('.popup__caption');
+const popupPhoto = document.querySelector('.popup__image');
+export { initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput,jobInput, profileName, profileJob, photoSubtitle, popupPhoto}

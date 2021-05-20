@@ -5,7 +5,7 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import { initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob } from '../utils/constants.js'
+import { initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto } from '../utils/constants.js'
 
 const cardList = new Section({
     items: initialCards,
@@ -34,6 +34,8 @@ function handleAddFormSubmit() {
 function openPhoto(image, title) {
     const popupWithImage = new PopupWithImage('.popup-photo');
     popupWithImage.open(image, title);
+    popupPhoto.src = image;
+    photoSubtitle.textContent = title;
     popupWithImage.setEventListeners();
 };
 
