@@ -9,6 +9,8 @@ import { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submi
 
 const popupWithImage = new PopupWithImage('.popup-photo');
 const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob })
+const popupEditProfile = new PopupWithForm('.popup-edit', handleEditFormSubmit);
+const popupAddCard = new PopupWithForm('.popup-add-card', handleAddFormSubmit);
 
 const cardList = new Section({
     items: initialCards,
@@ -58,10 +60,8 @@ function clearErrorData(element) {
 }
 // редактирование профиля
 btnOpenEditPopup.addEventListener('click', function () {
-    const popupEditProfile = new PopupWithForm('.popup-edit', handleEditFormSubmit);
     popupEditProfile.setEventListeners();
     popupEditProfile.open();
-    const inputInfo = new UserInfo({ userName: profileName, userInfo: profileJob });
     nameInput.value = inputInfo.getUserInfo().name;
     jobInput.value = inputInfo.getUserInfo().userInfo;
     clearErrorData(popupEditForm);
@@ -70,7 +70,7 @@ btnOpenEditPopup.addEventListener('click', function () {
 btnAdd.addEventListener('click', function () {
     submitterOfAdd.reset();
     clearErrorData(popupAddForm);
-    const popupAddCard = new PopupWithForm('.popup-add-card', handleAddFormSubmit);
+    
     popupAddCard.setEventListeners();
     popupAddCard.open();
 });
