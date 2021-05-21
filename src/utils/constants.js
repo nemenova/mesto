@@ -39,7 +39,7 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
-const validatonConfig = {
+const validationConfig = {
     formSelector: '.form',
     inputSelector: '.form__item',
     submitButtonSelector: '.popup__submit-btn',
@@ -47,4 +47,4 @@ const validatonConfig = {
     inputErrorClass: 'form__item_type_error',
     errorClass: 'form__item-error_active'
 }
-export { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validatonConfig}
+export { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig}

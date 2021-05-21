@@ -14,8 +14,8 @@ export default class UserInfo {
         return values;
     }
 
-    setUserInfo({ nameInput, jobInput }) {
-        this._userName.textContent = nameInput.value;
-        this._userInfo.textContent = jobInput.value;
+    setUserInfo() {
+        this._userName.textContent = document.querySelector('.form__item_el_name').value;
+        this._userInfo.textContent = document.querySelector('.form__item_el_about').value;
     }
 }

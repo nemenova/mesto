@@ -5,7 +5,10 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validatonConfig } from '../utils/constants.js'
+import { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig } from '../utils/constants.js'
+
+const popupWithImage = new PopupWithImage('.popup-photo');
+const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob })
 
 const cardList = new Section({
     items: initialCards,
@@ -22,7 +25,7 @@ cardList.renderItems();
 // функция добавления карточки через форму
 function handleAddFormSubmit() {
     
-    btnAddition.classList.add('popup__submit-btn_inactive');
+    btnAddition.classList.add(validatonConfig.inactiveButtonClass);
     btnAddition.setAttribute('disabled', 'true');
     placeInputInfo.name = placeName.value;
     placeInputInfo.link = placeImage.value;
@@ -32,7 +35,7 @@ function handleAddFormSubmit() {
 }
 // функция поп-апа с картинкой
 function openPhoto(image, title) {
-    const popupWithImage = new PopupWithImage('.popup-photo');
+    
     popupWithImage.open(image, title);
     popupPhoto.src = image;
     photoSubtitle.textContent = title;
@@ -41,17 +44,16 @@ function openPhoto(image, title) {
 
 // функция редактирования профиля
 function handleEditFormSubmit(data) {
-    const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob })
     userInfo.setUserInfo(data);
 };
 
 // функция очистки сообщения об ошибке и стиля инпута после закрытия без сабмита
 function clearErrorData(element) {
-    const inputListform = element.querySelectorAll('.form__item');
+    const inputListform = element.querySelectorAll(validatonConfig.inputSelector);
     inputListform.forEach((item) => {
         const errorElement = element.querySelector(`.${item.id}-error`);
         errorElement.textContent = '';
-        item.classList.remove('form__item_type_error');
+        item.classList.remove(validatonConfig.inputErrorClass);
     })
 }
 // редактирование профиля
@@ -73,5 +75,5 @@ btnAdd.addEventListener('click', function () {
     popupAddCard.open();
 });
 // валидация форм
-const form = new FormValidation(validatonConfig);
+const form = new FormValidation(validationConfig);
 form.enableValidation();
