@@ -25,7 +25,7 @@ const initialCards = [
     }
 ];
 const placeInputInfo = [];
-
+const btnAddition = document.querySelector('.add-submit-btn');
 const submitterOfAdd = document.querySelector('.form-place');
 const placeName = document.querySelector('.form__item_el_place-name');
 const placeImage = document.querySelector('.form__item_el_place-img');
@@ -39,4 +39,12 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
-export { initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput,jobInput, profileName, profileJob, photoSubtitle, popupPhoto}
+const validatonConfig = {
+    formSelector: '.form',
+    inputSelector: '.form__item',
+    submitButtonSelector: '.popup__submit-btn',
+    inactiveButtonClass: 'popup__submit-btn_inactive',
+    inputErrorClass: 'form__item_type_error',
+    errorClass: 'form__item-error_active'
+}
+export { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validatonConfig}

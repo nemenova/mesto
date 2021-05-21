@@ -5,7 +5,7 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import { initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto } from '../utils/constants.js'
+import { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validatonConfig } from '../utils/constants.js'
 
 const cardList = new Section({
     items: initialCards,
@@ -21,7 +21,7 @@ cardList.renderItems();
 
 // функция добавления карточки через форму
 function handleAddFormSubmit() {
-    const btnAddition = document.querySelector('.add-submit-btn');
+    
     btnAddition.classList.add('popup__submit-btn_inactive');
     btnAddition.setAttribute('disabled', 'true');
     placeInputInfo.name = placeName.value;
@@ -73,12 +73,5 @@ btnAdd.addEventListener('click', function () {
     popupAddCard.open();
 });
 // валидация форм
-const form = new FormValidation({
-    formSelector: '.form',
-    inputSelector: '.form__item',
-    submitButtonSelector: '.popup__submit-btn',
-    inactiveButtonClass: 'popup__submit-btn_inactive',
-    inputErrorClass: 'form__item_type_error',
-    errorClass: 'form__item-error_active'
-});
+const form = new FormValidation(validatonConfig);
 form.enableValidation();
