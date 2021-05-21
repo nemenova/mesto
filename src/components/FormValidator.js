@@ -1,17 +1,20 @@
 export default class FormValidation {
-    constructor(enableValidationObj) {
+    constructor(enableValidationObj, formSelector) {
         this._enableValidationObj = enableValidationObj;
-    }
+        this._form = document.querySelector(formSelector);
+       
+        // this._buttonElement = this._form.querySelector(this._enableValidationObj.submitButtonSelector);
 
+    }
     // Функция запуска проверки
     enableValidation = () => {
-        const formList = Array.from(document.querySelectorAll(this._enableValidationObj.formSelector));
-        formList.forEach((formElement) => {
-            formElement.addEventListener('submit', (evt) => {
+        
+        
+        this._form.addEventListener('submit', (evt) => {
                 evt.preventDefault();
             });
-            this._setEventListeners(formElement);
-        });
+        this._setEventListeners(this._form);
+        
     };
 
     // Функция, которая добавляет класс с ошибкой

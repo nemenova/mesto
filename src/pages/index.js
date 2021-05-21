@@ -27,7 +27,7 @@ cardList.renderItems();
 // функция добавления карточки через форму
 function handleAddFormSubmit() {
     
-    btnAddition.classList.add(validatonConfig.inactiveButtonClass);
+    btnAddition.classList.add(validationConfig.inactiveButtonClass);
     btnAddition.setAttribute('disabled', 'true');
     placeInputInfo.name = placeName.value;
     placeInputInfo.link = placeImage.value;
@@ -51,19 +51,19 @@ function handleEditFormSubmit(data) {
 
 // функция очистки сообщения об ошибке и стиля инпута после закрытия без сабмита
 function clearErrorData(element) {
-    const inputListform = element.querySelectorAll(validatonConfig.inputSelector);
+    const inputListform = element.querySelectorAll(validationConfig.inputSelector);
     inputListform.forEach((item) => {
         const errorElement = element.querySelector(`.${item.id}-error`);
         errorElement.textContent = '';
-        item.classList.remove(validatonConfig.inputErrorClass);
+        item.classList.remove(validationConfig.inputErrorClass);
     })
 }
 // редактирование профиля
 btnOpenEditPopup.addEventListener('click', function () {
     popupEditProfile.setEventListeners();
     popupEditProfile.open();
-    nameInput.value = inputInfo.getUserInfo().name;
-    jobInput.value = inputInfo.getUserInfo().userInfo;
+    nameInput.value = userInfo.getUserInfo().name;
+    jobInput.value = userInfo.getUserInfo().userInfo;
     clearErrorData(popupEditForm);
 });
 // добавление новой карточки
@@ -75,5 +75,7 @@ btnAdd.addEventListener('click', function () {
     popupAddCard.open();
 });
 // валидация форм
-const form = new FormValidation(validationConfig);
-form.enableValidation();
+const formAdding = new FormValidation(validationConfig, validationConfig.formAddSelector);
+formAdding.enableValidation();
+const formEditing= new FormValidation(validationConfig, validationConfig.formEditSelector);
+formEditing.enableValidation();

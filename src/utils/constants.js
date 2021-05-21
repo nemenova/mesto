@@ -40,6 +40,8 @@ const profileJob = document.querySelector('.profile__about');
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
 const validationConfig = {
+    formAddSelector: '.form-place',
+    formEditSelector: '.form-profile',
     formSelector: '.form',
     inputSelector: '.form__item',
     submitButtonSelector: '.popup__submit-btn',
