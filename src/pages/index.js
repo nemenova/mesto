@@ -45,8 +45,8 @@ function openPhoto(image, title) {
 };
 
 // функция редактирования профиля
-function handleEditFormSubmit(data) {
-    userInfo.setUserInfo(data);
+function handleEditFormSubmit() {
+    userInfo.setUserInfo({ nameInput: nameInput, jobInput: jobInput });
 };
 
 // функция очистки сообщения об ошибке и стиля инпута после закрытия без сабмита
