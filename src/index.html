@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <!-- <link rel="stylesheet" href="./pages/index.css"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Место</title>
 </head>
@@ -11,7 +10,6 @@
 <body class="page">
     <header class="header">
         <img src="<%=require('./images/logo.svg')%>" alt="логотип" class="logo">
-        <link>
     </header>
     <main class="content">
         <section class="profile">
@@ -19,7 +17,7 @@
             <div class="profile__text">
                 <div class="profile__title">
                     <h1 class="profile__name">Жак-Ив Кусто</h1>
-                    <button type="button" class="profile__edit-btn btn-opacity-change"></button>
+                    <button type="button" aria-label="редактировать" class="profile__edit-btn btn-opacity-change"></button>
                 </div>
                 <p class="profile__about">Исследователь океана</p>
             </div>
@@ -27,16 +25,7 @@
         </section>
 
         <section class="cards">
-            <template class="card-template">
-                <li class="card">
-                    <button type="button" class="card__delete-btn btn-opacity-change"></button>
-                    <img src="<%=require('./images/like.svg')%>" alt="развалины" class="card__image">
-                    <div class="card__content">
-                        <h2 class="card__title">Карачаевск</h2>
-                        <button type="button" class="card__like-btn btn-opacity-change"></button>
-                    </div>
-                </li>
-            </template>
+           
         </section>
     </main>
     <footer class="footer">
@@ -84,7 +73,16 @@
             <p class="popup__caption"></p>
         </div>
     </div>
-    <!-- <script type="module" src="./pages/index.js"></script> -->
+    <template class="card-template">
+        <li class="card">
+            <button type="button" class="card__delete-btn btn-opacity-change"></button>
+            <img src="<%=require('./images/like.svg')%>" alt="развалины" class="card__image">
+            <div class="card__content">
+                <h2 class="card__title">Карачаевск</h2>
+                <button type="button" class="card__like-btn btn-opacity-change"></button>
+            </div>
+        </li>
+    </template>
 </body>
 
 </html>
