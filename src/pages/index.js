@@ -11,6 +11,11 @@ const popupWithImage = new PopupWithImage('.popup-photo');
 const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob })
 const popupEditProfile = new PopupWithForm('.popup-edit', handleEditFormSubmit);
 const popupAddCard = new PopupWithForm('.popup-add-card', handleAddFormSubmit);
+// валидация форм
+const formAdding = new FormValidation(validationConfig, validationConfig.formAddSelector);
+formAdding.enableValidation();
+const formEditing = new FormValidation(validationConfig, validationConfig.formEditSelector);
+formEditing.enableValidation();
 
 const cardList = new Section({
     items: initialCards,
@@ -26,7 +31,6 @@ cardList.renderItems();
 
 // функция добавления карточки через форму
 function handleAddFormSubmit() {
-    
     btnAddition.classList.add(validationConfig.inactiveButtonClass);
     btnAddition.setAttribute('disabled', 'true');
     placeInputInfo.name = placeName.value;
@@ -37,7 +41,6 @@ function handleAddFormSubmit() {
 }
 // функция поп-апа с картинкой
 function openPhoto(image, title) {
-    
     popupWithImage.open(image, title);
     popupPhoto.src = image;
     photoSubtitle.textContent = title;
@@ -70,12 +73,6 @@ btnOpenEditPopup.addEventListener('click', function () {
 btnAdd.addEventListener('click', function () {
     submitterOfAdd.reset();
     clearErrorData(popupAddForm);
-    
     popupAddCard.setEventListeners();
     popupAddCard.open();
 });
-// валидация форм
-const formAdding = new FormValidation(validationConfig, validationConfig.formAddSelector);
-formAdding.enableValidation();
-const formEditing= new FormValidation(validationConfig, validationConfig.formEditSelector);
-formEditing.enableValidation();

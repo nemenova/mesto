@@ -4,13 +4,11 @@ export default class Card {
         this._title = data.name;
         this._cardSelector = cardSelector;
         this._openPhoto = handleCardClick;
-
     }
     _getTemplate() {
         const cardElement = document.querySelector(this._cardSelector).content.querySelector('.card').cloneNode(true);
 
         return cardElement;
-
     }
     createCard() {
         this._element = this._getTemplate();
@@ -44,5 +42,4 @@ export default class Card {
         const extraCard = this._element.closest('.card');
         extraCard.remove();
     };
-
 };
