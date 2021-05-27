@@ -1,4 +1,4 @@
-import { nameInput, jobInput} from '../utils/constants.js'
+import { nameInput, jobInput, placeName, placeImage} from '../utils/constants.js'
 
 export default class Api {
     constructor(options) {
@@ -20,10 +20,6 @@ export default class Api {
         
         })
             .then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
-        // .then(result => console.log(result))
-        //     .then((result) => {
-        //     const fuck = result;
-        // })
     }
     changeUserInfo() {
         return fetch(`${this._address}/users/me`,  {
@@ -37,17 +33,17 @@ export default class Api {
                 
         }) .then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
     }
-    // changeUserInfo(name, job) {
-    //     return fetch(`${this._address}/users/me`, {
-    //         method: 'PATCH',
-    //         headers: this._token,
+    addNewCard() {
+        return fetch(`${this._address}/cards`, {
+            method: 'POST',
+            headers: this._token,
 
-    //         body: JSON.stringify({
-    //             name: name,
-    //             about: job
-    //         })
+            body: JSON.stringify({
+                name: placeName.value,
+                link: placeImage.value
+            })
 
-    //     }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
-    // }
+        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+    }
     
 }

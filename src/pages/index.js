@@ -34,10 +34,7 @@ api.getUserInfo()
 });
 
 
-
-// console.log(api.getUserInfo());
-// console.log(api.getUserInfo().name);
-// userInfo.setUserInfo({ nameInput: api.getUserInfo().name, jobInput: jobInput });
+// let cardList = null;
 
 
 api.getCards()
@@ -76,12 +73,21 @@ formEditing.enableValidation();
 function handleAddFormSubmit() {
     btnAddition.classList.add(validationConfig.inactiveButtonClass);
     btnAddition.setAttribute('disabled', 'true');
-    placeInputInfo.name = placeName.value;
-    placeInputInfo.link = placeImage.value;
+    // placeInputInfo.name = placeName.value;
+    // placeInputInfo.link = placeImage.value;
 
-    const card = new Card(placeInputInfo, '.card-template', openPhoto)
+
+
+    api.addNewCard()
+.then((result)=>{
+    const cardList = document.querySelector('.cards')
+    const card = new Card(result, '.card-template', openPhoto)
     const newPlace = card.createCard();
-    cardList.addItem(newPlace);
+    cardList.prepend(newPlace);
+})
+    // const card = new Card(placeInputInfo, '.card-template', openPhoto)
+    // const newPlace = card.createCard();
+    // cardList.addItem(newPlace);
 }
 // функция поп-апа с картинкой
 function openPhoto(image, title) {
