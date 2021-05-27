@@ -25,8 +25,10 @@ const api = new Api({
 // profileName.textContent = api.getUserInfo().name;
 api.getUserInfo()
 .then((result) =>{
-    console.log(result)
     userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about });
+    console.log(result)
+    console.log(result.avatar)
+    document.querySelector('.profile__photo').src = result.avatar;
 })
 .catch ((err) => {
     console.log(err); // выведем ошибку в консоль
