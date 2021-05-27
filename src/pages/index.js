@@ -27,7 +27,6 @@ api.getUserInfo()
 .then((result) =>{
     userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about });
     console.log(result)
-    console.log(result.avatar)
     document.querySelector('.profile__photo').src = result.avatar;
 })
 .catch ((err) => {
@@ -43,7 +42,7 @@ api.getUserInfo()
 
 api.getCards()
     .then((result) => {
-        console.log(result);
+        // console.log(result);
         const cardList = new Section({
             items: result,
             renderer: (item) => {
@@ -79,6 +78,7 @@ function handleAddFormSubmit() {
     btnAddition.setAttribute('disabled', 'true');
     placeInputInfo.name = placeName.value;
     placeInputInfo.link = placeImage.value;
+
     const card = new Card(placeInputInfo, '.card-template', openPhoto)
     const newPlace = card.createCard();
     cardList.addItem(newPlace);
@@ -94,7 +94,12 @@ function openPhoto(image, title) {
 
 // функция редактирования профиля
 function handleEditFormSubmit() {
-    userInfo.setUserInfo({ nameInput: api.getUserInfo().name, jobInput: jobInput });
+    // userInfo.setUserInfo({ nameInput: api.getUserInfo().name, jobInput: jobInput });
+    api.changeUserInfo()
+        .then((result) => {
+            console.log(result)
+            userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about });
+        })
 };
 
 // функция очистки сообщения об ошибке и стиля инпута после закрытия без сабмита

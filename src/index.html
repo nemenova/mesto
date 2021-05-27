@@ -13,7 +13,10 @@
     </header>
     <main class="content">
         <section class="profile">
+            <div class="profile__photo-container">
             <img src="<%=require('./images/Avatar.png')%>" alt="фото профиля" class="profile__photo">
+            <button type="button" class="profile__photo-edit-btn"></button>
+            </div>
             <div class="profile__text">
                 <div class="profile__title">
                     <h1 class="profile__name"></h1>
@@ -51,7 +54,7 @@
     </div>
     <div class="popup popup-add-card">
         <div class="popup__container">
-            <button type="button" class="popup__close-btn btn-opacity-change place-btn">+</button>
+            <button type="button" class="popup__close-btn btn-opacity-change">+</button>
             <h2 class="popup__title">Новое место</h2>
             <form name="place" class="form form-place" novalidate>
                 <fieldset class="form__input">
@@ -68,9 +71,26 @@
     </div>
     <div class="popup popup_theme_dark popup-photo">
         <div class="popup__container-photo">
-            <button type="button" class="popup__close-btn btn-opacity-change close-photo-btn">+</button>
+            <button type="button" class="popup__close-btn btn-opacity-change">+</button>
             <img src="<%=require('./images/like.svg')%>" alt="картинка" class="popup__image">
             <p class="popup__caption"></p>
+        </div>
+    </div>
+    <div class="popup popup-change-photo">
+        <div class="popup__container">
+            <button type="button" class="popup__close-btn btn-opacity-change">+</button>
+            <h2 class="popup__title">Обновить аватар</h2>
+            <form name="place" class="form form-place" novalidate>
+                <fieldset class="form__input">
+                    <input id="place-name-input" name="place-name" placeholder="Название" type="text" minlength="2"
+                        maxlength="30" class="form__item form__item_el_place-name" required>
+                    <span class="form__item-error place-name-input-error"></span>
+                    <input id="place-img-input" name="place-img" placeholder="Ссылка на картинку" type="url"
+                        class="form__item form__item_el_place-img" required>
+                    <span class="form__item-error place-img-input-error"></span>
+                </fieldset>
+                <button type="submit" class="popup__submit-btn black-btn-style add-submit-btn">Сохранить</button>
+            </form>
         </div>
     </div>
     <template class="card-template">
