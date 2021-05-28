@@ -1,4 +1,4 @@
-import { nameInput, jobInput, placeName, placeImage} from '../utils/constants.js'
+import { nameInput, jobInput, avatarInput, placeName, placeImage} from '../utils/constants.js'
 
 export default class Api {
     constructor(options) {
@@ -45,5 +45,15 @@ export default class Api {
 
         }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
     }
-    
+    changeProfilePhoto() {
+        return fetch(`${this._address}/users/me/avatar`, {
+            method: 'PATCH',
+            headers: this._token,
+
+            body: JSON.stringify({
+                avatar: avatarInput.value
+            })
+
+        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+    }
 }

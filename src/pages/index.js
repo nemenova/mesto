@@ -5,15 +5,17 @@ import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import UserInfo from '../components/UserInfo.js';
-import { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig } from '../utils/constants.js'
+import { popupAvatar, submitterOfAvatar, avatar, avatarEditBtn, btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig } from '../utils/constants.js'
 import Api from '../components/Api.js'
 
 const popupWithImage = new PopupWithImage('.popup-photo');
-const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob })
+const userInfo = new UserInfo({ userName: profileName, userInfo: profileJob, avatar: avatar })
 const popupEditProfile = new PopupWithForm('.popup-edit', handleEditFormSubmit);
 popupEditProfile.setEventListeners();
 const popupAddCard = new PopupWithForm('.popup-add-card', handleAddFormSubmit);
 popupAddCard.setEventListeners();
+const popupChangeAvatar = new PopupWithForm('.popup-change-photo', handleAvatarSubmit);
+popupChangeAvatar.setEventListeners();
 
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
@@ -33,10 +35,6 @@ api.getUserInfo()
     console.log(err); // выведем ошибку в консоль
 });
 
-
-// let cardList = null;
-
-
 api.getCards()
     .then((result) => {
         // console.log(result);
@@ -55,18 +53,14 @@ api.getCards()
   .catch ((err) => {
             console.log(err); // выведем ошибку в консоль
         });
-// console.log(api)
-// console.log(api.getCards());
-
-
-
 
 // валидация форм
 const formAdding = new FormValidation(validationConfig, validationConfig.formAddSelector);
 formAdding.enableValidation();
 const formEditing = new FormValidation(validationConfig, validationConfig.formEditSelector);
 formEditing.enableValidation();
-
+const formAvatar = new FormValidation(validationConfig, validationConfig.formAvatarSelector);
+formAvatar.enableValidation();
 
 
 // функция добавления карточки через форму
@@ -108,6 +102,16 @@ function handleEditFormSubmit() {
         })
 };
 
+function handleAvatarSubmit() {
+    // userInfo.setUserInfo({ nameInput: api.getUserInfo().name, jobInput: jobInput });
+    api.changeProfilePhoto()
+        .then((result) => {
+            console.log(result)
+            userInfo.setUserPhoto(result.avatar);
+        })
+};
+
+
 // функция очистки сообщения об ошибке и стиля инпута после закрытия без сабмита
 function clearErrorData(element) {
     const inputListform = element.querySelectorAll(validationConfig.inputSelector);
@@ -131,4 +135,11 @@ btnAdd.addEventListener('click', function () {
     clearErrorData(popupAddForm);
 
     popupAddCard.open();
+});
+
+avatarEditBtn.addEventListener('click', function () {
+    submitterOfAvatar.reset();
+    clearErrorData(popupAvatar);
+
+    popupChangeAvatar.open();
 });

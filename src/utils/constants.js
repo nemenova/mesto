@@ -35,6 +35,11 @@ const btnOpenEditPopup = document.querySelector('.profile__edit-btn');
 const btnAdd = document.querySelector('.profile__add-btn');
 const nameInput = document.querySelector('.form__item_el_name');
 const jobInput = document.querySelector('.form__item_el_about');
+const submitterOfAvatar = document.querySelector('.form-avatar')
+const popupAvatar = document.querySelector('.popup-change-photo')
+const avatarInput = document.querySelector('.form__item_el_avatar');
+const avatarEditBtn = document.querySelector('.profile__photo-edit-btn');
+const avatar = document.querySelector('.profile__photo');
 const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const photoSubtitle = document.querySelector('.popup__caption');
@@ -42,6 +47,7 @@ const popupPhoto = document.querySelector('.popup__image');
 const validationConfig = {
     formAddSelector: '.form-place',
     formEditSelector: '.form-profile',
+    formAvatarSelector: '.form-avatar',
     formSelector: '.form',
     inputSelector: '.form__item',
     submitButtonSelector: '.popup__submit-btn',
@@ -49,4 +55,4 @@ const validationConfig = {
     inputErrorClass: 'form__item_type_error',
     errorClass: 'form__item-error_active'
 }
-export { btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig}
+export { popupAvatar, submitterOfAvatar, avatar, avatarEditBtn, btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig}

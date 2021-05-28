@@ -1,3 +1,5 @@
+import { data } from "autoprefixer";
+
 export default class Card {
     constructor(data, cardSelector, handleCardClick) {
         this._image = data.link;
@@ -12,6 +14,10 @@ export default class Card {
     }
     createCard() {
         this._element = this._getTemplate();
+        // if (data.owner._id === !'4f373d74-bd3f-4a56-8098-6fb64502e0a9') {
+        //     const extraBtn = this._element.closest('.card__delete-btn')
+        //     extraBtn.remove();
+        // }
         const cardImage = this._element.querySelector('.card__image');
         const cardTitle = this._element.querySelector('.card__title');
         cardTitle.textContent = this._title;

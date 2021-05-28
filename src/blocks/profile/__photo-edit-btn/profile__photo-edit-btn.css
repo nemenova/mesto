@@ -1,7 +1,6 @@
 .profile__photo-edit-btn{
     position: absolute;
     opacity: 0;
-    /* display: none; */
     right: 0px;
     top: 0px;
     background-image: url(../../../images/edit-pen.svg);
