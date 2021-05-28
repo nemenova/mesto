@@ -1,9 +1,10 @@
-import { data } from "autoprefixer";
+// import { data } from "autoprefixer";
 
 export default class Card {
     constructor(data, cardSelector, handleCardClick) {
         this._image = data.link;
         this._title = data.name;
+        this._owner = data.owner._id;
         this._cardSelector = cardSelector;
         this._openPhoto = handleCardClick;
     }
@@ -14,10 +15,11 @@ export default class Card {
     }
     createCard() {
         this._element = this._getTemplate();
-        // if (data.owner._id === !'4f373d74-bd3f-4a56-8098-6fb64502e0a9') {
-        //     const extraBtn = this._element.closest('.card__delete-btn')
-        //     extraBtn.remove();
-        // }
+        if (this._owner != 'f2d9e460d3134ab20662402a') {
+            
+            const extraBtn = this._element.querySelector('.card__delete-btn')
+            extraBtn.remove();
+        }
         const cardImage = this._element.querySelector('.card__image');
         const cardTitle = this._element.querySelector('.card__title');
         cardTitle.textContent = this._title;
@@ -28,9 +30,12 @@ export default class Card {
         return this._element;
     }
     _setEventListeners() {
-        this._element.querySelector('.card__delete-btn').addEventListener('click', () => {
-            this._deleteCard();
-        });
+
+        if (this._owner === 'f2d9e460d3134ab20662402a') {
+            this._element.querySelector('.card__delete-btn').addEventListener('click', () => {
+                this._deleteCard();
+            });
+        }
         this._element.querySelector('.card__like-btn').addEventListener('click', () => {
             this._likeCard();
         });
