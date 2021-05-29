@@ -44,6 +44,8 @@ const profileName = document.querySelector('.profile__name');
 const profileJob = document.querySelector('.profile__about');
 const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
+const iconCardDelete = document.querySelector('.card__delete-btn');
+const cardDeleteSubmitBtn = document.querySelector('.deletion-submit-btn');
 const validationConfig = {
     formAddSelector: '.form-place',
     formEditSelector: '.form-profile',
@@ -55,4 +57,4 @@ const validationConfig = {
     inputErrorClass: 'form__item_type_error',
     errorClass: 'form__item-error_active'
 }
-export { popupAvatar, submitterOfAvatar, avatar, avatarEditBtn, btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig}
+export { iconCardDelete, cardDeleteSubmitBtn, popupAvatar, submitterOfAvatar, avatar, avatarEditBtn, btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig}

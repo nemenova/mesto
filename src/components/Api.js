@@ -56,4 +56,11 @@ export default class Api {
 
         }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
     }
+    deleteCard(id) {
+        return fetch(`${this._address}/cards/${id}`, {
+            method: 'DELETE',
+            headers: this._token,
+            
+        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+    }
 }

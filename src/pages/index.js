@@ -2,10 +2,12 @@ import Card from '../components/Card.js';
 import FormValidation from '../components/FormValidator.js';
 import './index.css';
 import Section from '../components/Section.js';
+import Popup from '../components/Popup.js'
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupDeletion from '../components/PopupDeletion.js'
 import UserInfo from '../components/UserInfo.js';
-import { popupAvatar, submitterOfAvatar, avatar, avatarEditBtn, btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig } from '../utils/constants.js'
+import { iconCardDelete, cardDeleteSubmitBtn, popupAvatar, submitterOfAvatar, avatar, avatarEditBtn, btnAddition, initialCards, placeInputInfo, placeImage, placeName, submitterOfAdd, popupAddForm, popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, profileName, profileJob, photoSubtitle, popupPhoto, validationConfig } from '../utils/constants.js'
 import Api from '../components/Api.js'
 
 const popupWithImage = new PopupWithImage('.popup-photo');
@@ -16,6 +18,8 @@ const popupAddCard = new PopupWithForm('.popup-add-card', handleAddFormSubmit);
 popupAddCard.setEventListeners();
 const popupChangeAvatar = new PopupWithForm('.popup-change-photo', handleAvatarSubmit);
 popupChangeAvatar.setEventListeners();
+// const popupDeletion = new PopupDeletion('.popup-card-delete');
+// popupDeletion.setEventListeners();
 
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
@@ -26,14 +30,14 @@ const api = new Api({
 });
 // profileName.textContent = api.getUserInfo().name;
 api.getUserInfo()
-.then((result) =>{
-    userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about });
-    console.log(result)
-    document.querySelector('.profile__photo').src = result.avatar;
-})
-.catch ((err) => {
-    console.log(err); // выведем ошибку в консоль
-});
+    .then((result) => {
+        userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about });
+        console.log(result)
+        document.querySelector('.profile__photo').src = result.avatar;
+    })
+    .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+    });
 
 api.getCards()
     .then((result) => {
@@ -41,18 +45,29 @@ api.getCards()
         const cardList = new Section({
             items: result,
             renderer: (item) => {
-                const cards = new Card(item, '.card-template', openPhoto);
+                const cards = new Card(item, '.card-template', openPhoto, () => {
+                    popupDeletion.open(() => {
+                        api.deleteCard(card.getId())
+                            .then(() => {
+                                card.deleteCard();
+                                popupDeletion.close();
+                            })
+                            .catch((err) => {
+                                console.log(err); // выведем ошибку в консоль
+                            });
+                    })
+                });
                 const cardElement = cards.createCard();
                 cardList.addAnotherItem(cardElement);
-            },
+            }
         },
-            '.cards'
-        );
+
+            '.cards');
         cardList.renderItems();
     })
-  .catch ((err) => {
-            console.log(err); // выведем ошибку в консоль
-        });
+    .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+    });
 
 // валидация форм
 const formAdding = new FormValidation(validationConfig, validationConfig.formAddSelector);
@@ -63,26 +78,69 @@ const formAvatar = new FormValidation(validationConfig, validationConfig.formAva
 formAvatar.enableValidation();
 
 
+// function deletingCard(id) {
+//     api.deleteCard(id)
+//         .then(() => {
+//             // el.deleteCard();
+//         })
+//         .catch((err) => {
+//             console.log(err); // выведем ошибку в консоль
+//         });
+// }
+
 // функция добавления карточки через форму
 function handleAddFormSubmit() {
     btnAddition.classList.add(validationConfig.inactiveButtonClass);
     btnAddition.setAttribute('disabled', 'true');
     // placeInputInfo.name = placeName.value;
     // placeInputInfo.link = placeImage.value;
-
-
-
     api.addNewCard()
-.then((result)=>{
-    const cardList = document.querySelector('.cards')
-    const card = new Card(result, '.card-template', openPhoto)
-    const newPlace = card.createCard();
-    cardList.prepend(newPlace);
-})
+        .then((result) => {
+
+            // const popupDeletion = new PopupDeletion('.popup-card-delete');
+            // popupDeletion.setEventListeners();
+            const cardList = document.querySelector('.cards')
+            const card = new Card(result, '.card-template', openPhoto, () => {
+                popupDeletion.open()})
+
+            const popupDeletion = new PopupDeletion('.popup-card-delete');
+            popupDeletion.setEventListeners(() => {
+                api.deleteCard(card.getId())
+                    .then((res) => {
+                        
+                        console.log(res);
+                        card.deleteCard();
+                        popupDeletion.close();
+                    })
+                    .catch((err) => {
+                        console.log(err); // выведем ошибку в консоль
+                    })
+
+            });
+                
+                
+            
+            const newPlace = card.createCard();
+            cardList.prepend(newPlace);
+        })
+
+
+
+
+
+
+
+    // newPlace.querySelector('.card__delete-btn').addEventListener('click', function () {
+    //     popupDeletion.open();
+    //     popupDeletion.setEventListeners();
+    // })
+
+};
+
     // const card = new Card(placeInputInfo, '.card-template', openPhoto)
     // const newPlace = card.createCard();
     // cardList.addItem(newPlace);
-}
+
 // функция поп-апа с картинкой
 function openPhoto(image, title) {
     popupWithImage.open(image, title);
@@ -140,6 +198,20 @@ btnAdd.addEventListener('click', function () {
 avatarEditBtn.addEventListener('click', function () {
     submitterOfAvatar.reset();
     clearErrorData(popupAvatar);
-
     popupChangeAvatar.open();
 });
+
+
+
+// cardDeleteSubmitBtn.addEventListener('click', function () {
+//     api.deleteCard(id)
+//         .then((result) => {
+//           const id = result._id
+//         })
+//         .catch((err) => {
+//             console.log(err); // выведем ошибку в консоль
+//         });
+//     popupDeletion.close();
+
+
+// })
