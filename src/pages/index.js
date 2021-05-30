@@ -49,7 +49,6 @@ api.getCards()
                 }, () => {
                     api.like(cards.getId()) // функция лайка
                         .then((res) => {
-                            console.log(res);
                             cards.likeCard();
                             cards.renewLikes(res);
                         })
