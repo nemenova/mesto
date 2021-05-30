@@ -4,7 +4,7 @@
 
 technologies used: grid, flexbox, adaptive design.      
 
-new: interactive design, ability to add new cards and edit them. Ability to like content. Also you can view photos in bigger size (like a gallery but isn't).         
+new: interactive design, ability to add new cards and delete them. Ability to like content. Also you can view photos in bigger size (like a gallery but isn't). You can set your profile: name, occupaton and even photo!       
 
 Lang: html5, css, js         
 
