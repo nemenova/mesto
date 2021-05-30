@@ -7,7 +7,6 @@ export default class Card {
         this._id = data._id;
         this._likes = data.likes;
         this._cardId = data._id;
-        this._owner = data.owner._id;
         this._like = like;
         this._dislike = dislike;
         this._myId = myId;
@@ -82,8 +81,7 @@ export default class Card {
     renewLikes(data) {
         this._likesNumber.textContent = data.likes.length;
     }
-    deleteCard() {
-        const extraCard = this._element.closest('.card');
-        extraCard.remove();
+    deleteCard = () => {
+        this._element.remove();
     };
 };

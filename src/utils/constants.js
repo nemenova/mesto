@@ -19,6 +19,7 @@ const photoSubtitle = document.querySelector('.popup__caption');
 const popupPhoto = document.querySelector('.popup__image');
 const iconCardDelete = document.querySelector('.card__delete-btn');
 const cardDeleteSubmitBtn = document.querySelector('.deletion-submit-btn');
+const myId = 'f2d9e460d3134ab20662402a'
 const validationConfig = {
     formAddSelector: '.form-place',
     formEditSelector: '.form-profile',
@@ -30,7 +31,7 @@ const validationConfig = {
     inputErrorClass: 'form__item_type_error',
     errorClass: 'form__item-error_active'
 }
-export { iconCardDelete, cardDeleteSubmitBtn, popupAvatar, 
+export { myId, iconCardDelete, cardDeleteSubmitBtn, popupAvatar, 
     submitterOfAvatar, avatar, avatarEditBtn, btnAddition, 
     placeImage, placeName, submitterOfAdd, popupAddForm, 
     popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, avatarInput, 

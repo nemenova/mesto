@@ -46,8 +46,17 @@ api.getCards()
             renderer: (item) => {
                 const myId = userInfo.getId();
                 const cards = new Card(item, '.card-template', openPhoto, myId, () => {
-                    popupDeletion.open()
-                }, () => {
+                    popupDeletion.open(() => {
+                        api.deleteCard(cards.getId())
+                            .then(() => {
+                                cards.deleteCard();
+                                popupDeletion.close();
+                            })
+                            .catch((err) => {
+                                console.log(err); // выведем ошибку в консоль
+                            })
+                        })}, 
+                            () => {
                     api.like(cards.getId()) // функция лайка
                         .then((res) => {
                             cards.likeCard();
@@ -70,17 +79,17 @@ api.getCards()
                 const cardElement = cards.createCard();
                 cardList.addAnotherItem(cardElement);
 
-                if (item.owner._id === myId) { // если карточка моя, то вешаем слушатель на иконку и удаляем карточку
-                    popupDeletion.setEventListeners(() => {
-                        api.deleteCard(cards.getId())
-                            .then(() => {
-                                cards.deleteCard();
-                            })
-                            .catch((err) => {
-                                console.log(err); // выведем ошибку в консоль
-                            })
-                    });
-                }
+                // if (item.owner._id === myId) { // если карточка моя, то вешаем слушатель на иконку и удаляем карточку
+                //     popupDeletion.setEventListeners(() => {
+                //         api.deleteCard(cards.getId())
+                //             .then(() => {
+                //                 cards.deleteCard();
+                //             })
+                //             .catch((err) => {
+                //                 console.log(err); // выведем ошибку в консоль
+                //             })
+                //     });
+                // }
             }
         }, '.cards');
         cardList.renderItems();
@@ -107,8 +116,17 @@ function handleAddFormSubmit() {
             const myId = userInfo.getId();
             const cardList = document.querySelector('.cards');
             const card = new Card(result, '.card-template', openPhoto, myId, () => {
-                popupDeletion.open()
-            }, () => {
+                popupDeletion.open(() => {
+                    api.deleteCard(card.getId())
+                        .then(() => {
+                            card.deleteCard();
+                            popupDeletion.close();
+                        })
+                        .catch((err) => {
+                            console.log(err); // выведем ошибку в консоль
+                        })
+                })}, 
+                () => {
                 api.like(card.getId()) // функция лайка
                     .then((res) => {
                         card.likeCard();
@@ -127,15 +145,15 @@ function handleAddFormSubmit() {
                         console.log(err); // выведем ошибку в консоль
                     });
             })
-            popupDeletion.setEventListeners(() => { // вешаем слушателей на иконку удаления
-                api.deleteCard(card.getId())
-                    .then(() => {
-                        card.deleteCard();
-                    })
-                    .catch((err) => {
-                        console.log(err); // выведем ошибку в консоль
-                    })
-            });
+            // popupDeletion.setEventListeners(() => { // вешаем слушателей на иконку удаления
+            //     api.deleteCard(card.getId())
+            //         .then(() => {
+            //             card.deleteCard();
+            //         })
+            //         .catch((err) => {
+            //             console.log(err); // выведем ошибку в консоль
+            //         })
+            // });
             const newPlace = card.createCard();
             cardList.prepend(newPlace);
         })
