@@ -88,7 +88,7 @@ export default class Card {
         this._likesNumber.textContent = data.likes.length;
     }
     deleteCard() {
-        const extraCard = this._element;
+        const extraCard = this._element.closest('.card');
         extraCard.remove();
     };
 };
