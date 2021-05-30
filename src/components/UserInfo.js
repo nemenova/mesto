@@ -17,16 +17,7 @@ export default class UserInfo {
         this._userName.textContent = nameInput;
         this._userInfo.textContent = jobInput;
     }
-
     setUserPhoto(avatar){
         this._userPhoto.src = avatar;
     }
-    getUserId(me){
-        this._myId = me;
-        const myId = {
-            id: this._myId
-        };
-        return myId;
-    }
-
 }

@@ -5,7 +5,6 @@ export default class Api {
         this._address = options.baseUrl;
         this._token = options.headers;
     }
-
     getCards() {
         return fetch(`${this._address}/cards`, {
             headers: this._token
@@ -70,7 +69,6 @@ export default class Api {
 
         }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
     }
-
     dislike(id) {
         return fetch(`${this._address}/cards/likes/${id}`, {
             method: 'DELETE',
