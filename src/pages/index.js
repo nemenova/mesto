@@ -6,7 +6,7 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupDeletion from '../components/PopupDeletion.js'
 import UserInfo from '../components/UserInfo.js';
-import { myId, popupAvatar, submitterOfAvatar, avatar, 
+import { popupAvatar, submitterOfAvatar, avatar, 
     avatarEditBtn, btnAddition, submitterOfAdd, popupAddForm, 
     popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName, 
     profileJob, photoSubtitle, popupPhoto, validationConfig } from '../utils/constants.js'
@@ -31,7 +31,7 @@ const api = new Api({
 });
 api.getUserInfo()
     .then((result) => {
-        userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about });
+        userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about, myId: result._id });
         document.querySelector('.profile__photo').src = result.avatar;
     })
     .catch((err) => {
@@ -44,6 +44,7 @@ api.getCards()
         const cardList = new Section({
             items: result,
             renderer: (item) => {
+                const myId = userInfo.getId();
                 const cards = new Card(item, '.card-template', openPhoto, myId, () => {
                     popupDeletion.open()
                 }, () => {
@@ -103,7 +104,8 @@ function handleAddFormSubmit() {
     loading(true);
     api.addNewCard()
         .then((result) => {
-            const cardList = document.querySelector('.cards')
+            const myId = userInfo.getId();
+            const cardList = document.querySelector('.cards');
             const card = new Card(result, '.card-template', openPhoto, myId, () => {
                 popupDeletion.open()
             }, () => {
