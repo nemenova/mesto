@@ -23,15 +23,8 @@ export default class Popup {
     }
 }
     setEventListeners() {
-        // document.querySelector('.profile__edit-btn').addEventListener('click', () => {
-        //     this.open();
-        // })
-        // document.querySelector('.profile__add-btn').addEventListener('click', () => {
-        //     this.open();
-        // })
         this._popup.querySelector('.popup__close-btn').addEventListener('click', () => {
             this.close();
         })
-        
     }
 }

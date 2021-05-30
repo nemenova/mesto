@@ -63,4 +63,19 @@ export default class Api {
             
         }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
     }
+    like(id) {
+        return fetch(`${this._address}/cards/likes/${id}`, {
+            method: 'PUT',
+            headers: this._token,
+
+        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+    }
+
+    dislike(id) {
+        return fetch(`${this._address}/cards/likes/${id}`, {
+            method: 'DELETE',
+            headers: this._token,
+
+        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+    }
 }
