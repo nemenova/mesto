@@ -5,20 +5,25 @@ export default class Api {
         this._address = options.baseUrl;
         this._token = options.headers;
     }
+
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json();
+        }
+        return Promise.reject(`${res.status}`);
+    }
     getCards() {
         return fetch(`${this._address}/cards`, {
             headers: this._token
         })
-          
-            .then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
-            // .then(result => console.log(result))
+            .then(this._checkResponse)
     }
     getUserInfo() {
         return fetch(`${this._address}/users/me`, {
             headers: this._token,
         
         })
-            .then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+            .then(this._checkResponse)
     }
     changeUserInfo() {
         return fetch(`${this._address}/users/me`,  {
@@ -30,7 +35,7 @@ export default class Api {
                 about: jobInput.value
             })
                 
-        }) .then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+        }).then(this._checkResponse)
     }
     addNewCard() {
         return fetch(`${this._address}/cards`, {
@@ -42,7 +47,7 @@ export default class Api {
                 link: placeImage.value
             })
 
-        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+        }).then(this._checkResponse)
     }
     changeProfilePhoto() {
         return fetch(`${this._address}/users/me/avatar`, {
@@ -53,27 +58,27 @@ export default class Api {
                 avatar: avatarInput.value
             })
 
-        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+        }).then(this._checkResponse)
     }
     deleteCard(id) {
         return fetch(`${this._address}/cards/${id}`, {
             method: 'DELETE',
             headers: this._token,
             
-        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+        }).then(this._checkResponse)
     }
     like(id) {
         return fetch(`${this._address}/cards/likes/${id}`, {
             method: 'PUT',
             headers: this._token,
 
-        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+        }).then(this._checkResponse)
     }
     dislike(id) {
         return fetch(`${this._address}/cards/likes/${id}`, {
             method: 'DELETE',
             headers: this._token,
 
-        }).then(result => result.ok ? result.json() : Promise.reject(`${result.status}`))
+        }).then(this._checkResponse)
     }
 }
