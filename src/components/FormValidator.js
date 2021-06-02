@@ -8,8 +8,8 @@ export default class FormValidation {
     // Функция запуска проверки
     enableValidation = () => {
         this._form.addEventListener('submit', (evt) => {
-                evt.preventDefault();
-            });
+            evt.preventDefault();
+        });
         this._setEventListeners();
     };
 
@@ -47,21 +47,23 @@ export default class FormValidation {
     // Функция изменения состояния кнопки
     _toggleButtonState = () => {
         if (this._hasInvalidInput()) {
-            this._buttonElement.classList.add(this._enableValidationObj.inactiveButtonClass);
-            this._buttonElement.setAttribute('disabled', 'disabled');
+            this._disableButton()
         } else {
             this._buttonElement.classList.remove(this._enableValidationObj.inactiveButtonClass);
             this._buttonElement.removeAttribute('disabled');
         }
     };
-
+    _disableButton() {
+        this._buttonElement.classList.add(this._enableValidationObj.inactiveButtonClass);
+        this._buttonElement.setAttribute('disabled', 'disabled');
+    }
     // Функция установки слушателей на все
     _setEventListeners = () => {
-        // this._toggleButtonState();
+        this._toggleButtonState();
         this._form.addEventListener('reset', () => {
-            this._toggleButtonState();
-                this._inputList.forEach((inputElement) => {
-                    this._hideInputError(inputElement)
+            this._disableButton();
+            this._inputList.forEach((inputElement) => {
+                this._hideInputError(inputElement)
             })
         });
         this._inputList.forEach((inputElement) => {
