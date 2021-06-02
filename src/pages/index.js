@@ -6,12 +6,8 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupDeletion from '../components/PopupDeletion.js'
 import UserInfo from '../components/UserInfo.js';
-import {
-    popupAvatar, submitterOfAvatar, avatar,
-    avatarEditBtn, btnAddition, submitterOfAdd, popupAddForm,
-    popupEditForm, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName,
-    profileJob, photoSubtitle, popupPhoto, validationConfig
-} from '../utils/constants.js'
+import {avatar, avatarEditBtn, btnAdd, btnOpenEditPopup, nameInput, jobInput, profileName,
+    profileJob, validationConfig} from '../utils/constants.js'
 import Api from '../components/Api.js'
 
 const popupWithImage = new PopupWithImage('.popup-photo');
@@ -25,6 +21,9 @@ const popupChangeAvatar = new PopupWithForm('.popup-change-photo', handleAvatarS
 popupChangeAvatar.setEventListeners();
 const popupDeletion = new PopupDeletion('.popup-card-delete');
 popupDeletion.setEventListeners();
+const cardList = new Section((item) => {
+    cardList.addItem(createCard(item))
+}, '.cards');
 
 const api = new Api({
     baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
@@ -33,10 +32,12 @@ const api = new Api({
         'Content-Type': 'application/json'
     }
 });
-api.getUserInfo()
-    .then((result) => {
-        userInfo.setUserInfo({ nameInput: result.name, jobInput: result.about, myId: result._id });
-        userInfo.setUserPhoto(result.avatar);
+
+Promise.all([api.getUserInfo(), api.getCards()])
+    .then(([user, cards]) => {
+        userInfo.setUserInfo({ nameInput: user.name, jobInput: user.about, myId: user._id });
+        userInfo.setUserPhoto(user.avatar)
+        cardList.renderItems(cards);
     })
     .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -81,22 +82,6 @@ function createCard(data) {
         });
     return card.createCard();
 }
-
-
-const cardList = new Section((item) => {
-    cardList.addItem(createCard(item))}, '.cards');
-
-
-
-// подгружение первых 30 карточек на страницу
-api.getCards()
-    .then((result) => {
-       cardList.renderItems(result);
-    })
-    .catch((err) => {
-        console.log(err); // выведем ошибку в консоль
-    });
-
 // валидация форм
 const formAdding = new FormValidation(validationConfig, validationConfig.formAddSelector);
 formAdding.enableValidation();
