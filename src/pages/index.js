@@ -83,19 +83,15 @@ function createCard(data) {
 }
 
 
-const cardList = new Section(
-    renderer((item) => {createCard(item)}), '.cards');
+const cardList = new Section((item) => {
+    cardList.addItem(createCard(item))}, '.cards');
 
 
 
 // подгружение первых 30 карточек на страницу
 api.getCards()
     .then((result) => {
-        console.log(result)
-        console.log(result.owner._id)
-        cardList.renderItems(result);
-        cardList.addAnotherItem();
-
+       cardList.renderItems(result);
     })
     .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -114,7 +110,7 @@ function handleAddFormSubmit() {
     popupAddCard.renderLoading(true);
     api.addNewCard()
         .then((result) => {
-            cardList.addItem(createCard(result));
+            cardList.addAnotherItem(createCard(result));
         })
         .then(() => {
             popupAddCard.close();
